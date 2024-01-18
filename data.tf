@@ -15,3 +15,13 @@ data "terraform_remote_state" "vpc" {
     region  = "us-east-1"
   }
 }
+
+# Datasource to fetch the information from the ALB Remote Statefile
+data "terraform_remote_state" "alb" {
+  backend = "s3"
+  config = {
+    bucket  = "b56-terraform-state-bucket"
+    key     = "alb/${var.ENV}/terraform.tfstate"
+    region  = "us-east-1"
+  }
+}
