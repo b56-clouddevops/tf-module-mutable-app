@@ -22,7 +22,5 @@ resource "aws_instance" "od" {
   instance_type              = var.OD_INSTANCE_TYPE
   vpc_security_group_ids     = [aws_security_group.allows_app.id]
   subnet_id                  = element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index)
-
-
 }
 
