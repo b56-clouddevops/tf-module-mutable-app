@@ -21,19 +21,19 @@ data "terraform_remote_state" "alb" {
   backend = "s3"
   config = {
     bucket  = "b56-terraform-state-bucket"
-    key     = "alb/${var.ENV}/terraform.tfstate"
+    key     = "${var.ENV}/alb/terraform.tfstate"
     region  = "us-east-1"
   }
 }
 
-# data "terraform_remote_state" "db" {
-#   backend = "s3"
-#   config = {
-#     bucket  = "b56-terraform-state-bucket"
-#     key     = "databases/${var.ENV}/terraform.tfstate"
-#     region  = "us-east-1"
-#   }
-# }
+data "terraform_remote_state" "db" {
+  backend = "s3"
+  config = {
+    bucket  = "b56-terraform-state-bucket"
+    key     = "${var.ENV}/dbs/terraform.tfstate"
+    region  = "us-east-1"
+  }
+}
 
 # Extracting the information of the secret
 data "aws_secretsmanager_secret" "secrets" {
