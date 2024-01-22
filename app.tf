@@ -16,7 +16,7 @@ resource "null_resource" "app_deploy" {
     }
 
     inline = [
-      "ansible-pull -U https://github.com/b56-clouddevops/ansible.git -e MYSQL_ENDPOINT=${data.terraform_remote_state.db.outputs.} -e DOCDB_ENDPOINT=${data.terraform_remote_state.db.outputs.DOCDB_ENDPOINT} -e APP_VERSION=${var.APP_VERSION} -e ENV=${var.ENV} -e COMPONENT=${var.COMPONENT}  roboshop-pull.yml"
+      "ansible-pull -U https://github.com/b56-clouddevops/ansible.git -e MYSQL_ENDPOINT=${data.terraform_remote_state.db.outputs.MYSQL_ENDPOINT} -e DOCDB_ENDPOINT=${data.terraform_remote_state.db.outputs.DOCDB_ENDPOINT} -e APP_VERSION=${var.APP_VERSION} -e ENV=${var.ENV} -e COMPONENT=${var.COMPONENT}  roboshop-pull.yml"
         ]
     }
 }
