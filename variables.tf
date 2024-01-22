@@ -1,4 +1,5 @@
 variable "COMPONENT" {}
+variable "INTERNAL" {}
 variable "APP_VERSION" {}
 variable "APP_PORT" {}
 variable "ENV" {}
