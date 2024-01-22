@@ -1,4 +1,5 @@
 # Creates listener for Public alb
+
 resource "aws_lb_listener" "public" {
   count             = var.INTERNAL ? 0 : 1
 
