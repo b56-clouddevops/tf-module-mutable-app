@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "app" {
     enabled               = true 
     healthy_threshold     = 2 
     interval              = 5 
-    timeout               = 6
+    timeout               = 4
     path                  = "/health"
     unhealthy_threshold   = 2
   }
