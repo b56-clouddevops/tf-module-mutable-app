@@ -7,7 +7,7 @@ resource "aws_spot_instance_request" "spot" {
   wait_for_fulfillment       = true
   iam_instance_profile       = "b56-admin"
  
-  subnet_id                  = element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index)
+  subnet_id                  = var.internal ? element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index) : element(data.terraform_remote_state.vpc.outputs.PUBLIC_SUBNET_IDS, count.index
 
 }
 
