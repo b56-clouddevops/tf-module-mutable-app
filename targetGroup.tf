@@ -30,6 +30,8 @@ resource "random_integer" "priority" {
   max = 500
 }
 
+
+
 # Private Listener Rule
 resource "aws_lb_listener_rule" "app_rule" {
   count        = var.INTERNAL  ? 1 : 0 
