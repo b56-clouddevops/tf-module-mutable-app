@@ -6,12 +6,12 @@ resource "aws_lb_target_group" "app" {
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   health_check {
-    enabled             = true 
-    healthy_threshold   = 2 
-    interval            = 5 
-    timeout             = 4
-    path                = "/health"
-    unhealthy_threshold = 2
+    enabled               = true 
+    healthy_threshold     = 2 
+    interval              = 5 
+    timeout               = 4
+    path                  = "/health"
+    unhealthy_threshold   = 2
   }
 }
 
