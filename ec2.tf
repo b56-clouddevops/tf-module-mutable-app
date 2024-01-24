@@ -7,7 +7,7 @@ resource "aws_spot_instance_request" "spot" {
   wait_for_fulfillment       = true
   iam_instance_profile       = "b56-admin"
  
-  subnet_id                  = var.internal ? element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index) : element(data.terraform_remote_state.vpc.outputs.PUBLIC_SUBNET_IDS, count.index
+  subnet_id                  = var.INTERNAL ? element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index) : element(data.terraform_remote_state.vpc.outputs.PUBLIC_SUBNET_IDS, count.index)
 
 }
 
@@ -18,7 +18,7 @@ resource "aws_instance" "od" {
   ami                        = data.aws_ami.image.id                
   instance_type              = var.OD_INSTANCE_TYPE
   vpc_security_group_ids     = [aws_security_group.allows_app.id]
-  subnet_id                  = element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index)
+  subnet_id                  = var.INTERNAL ? element(data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS, count.index) : element(data.terraform_remote_state.vpc.outputs.PUBLIC_SUBNET_IDS, count.index)
   iam_instance_profile       = "b56-admin"
 }
 
