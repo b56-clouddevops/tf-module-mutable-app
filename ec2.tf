@@ -32,3 +32,13 @@ resource "aws_ec2_tag" "app_tags" {
   value                     = "${var.COMPONENT}-${var.ENV}"
 }
 
+
+# Prometheus Monitoring Tags
+resource "aws_ec2_tag" "prometheus_tags" {
+  count                     = local.INSTANCE_COUNT
+
+  resource_id               = element(local.INSTANCE_IDS, count.index)
+  key                       = "Monitor"
+  value                     = "yes"
+}
+
